@@ -80,7 +80,7 @@ const Card: React.FC<ICardProps> = ({
                 ref={titleRef}
                 role="textbox"
                 contentEditable
-                data-placeholder="Give me a name"
+                data-placeholder="🙋 Give me a name"
                 onBlur={(e) =>
                   onChangeContent(
                     id,
@@ -113,7 +113,10 @@ const Card: React.FC<ICardProps> = ({
         </span> */}
         {editing ? (
         <textarea
-          placeholder="What do you have for today?"
+          placeholder={`* ❓ What do you have for today?
+
+
+<markdown editor>`}
           onFocus={(e) => {
             const el = e.currentTarget;
             el.style.height = "auto";
@@ -141,7 +144,7 @@ const Card: React.FC<ICardProps> = ({
       ) : (
         <div className={"reactMarkDown"} onClick={() => setEditing(true)} >
          <ReactMarkdown
-            children={value || "What do you have for today?"}
+            children={value || "* ❓ What do you have for today?"}
             remarkPlugins={[
               [
                 remarkEmoji,
