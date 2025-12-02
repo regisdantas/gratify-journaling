@@ -1,24 +1,26 @@
 {
   "files": {
     "main.css": "/gratify-journaling/static/css/main.b8b8d90b.css",
-    "main.js": "/gratify-journaling/static/js/main.de15066f.js",
+    "main.js": "/gratify-journaling/static/js/main.65cfd580.js",
     "login.js": "/gratify-journaling/static/js/login.cf10f1d9.chunk.js",
-    "dashboard.js": "/gratify-journaling/static/js/dashboard.2feb15c6.chunk.js",
-    "static/js/380.7a274039.chunk.js": "/gratify-journaling/static/js/380.7a274039.chunk.js",
-    "static/js/235.25de4ffe.chunk.js": "/gratify-journaling/static/js/235.25de4ffe.chunk.js",
+    "dashboard.js": "/gratify-journaling/static/js/dashboard.ce76cae6.chunk.js",
+    "static/js/149.78bea28b.chunk.js": "/gratify-journaling/static/js/149.78bea28b.chunk.js",
+    "static/js/527.0d190e4e.chunk.js": "/gratify-journaling/static/js/527.0d190e4e.chunk.js",
+    "static/js/127.66856a8b.chunk.js": "/gratify-journaling/static/js/127.66856a8b.chunk.js",
     "static/media/logo.png": "/gratify-journaling/static/media/logo.1164200b72d8c1daf071.png",
     "static/media/holiday.ttf": "/gratify-journaling/static/media/holiday.69b3e7d2f82568b18386.ttf",
     "static/media/user.png": "/gratify-journaling/static/media/user.ae3a914be1e9f200b221.png",
     "index.html": "/gratify-journaling/index.html",
     "main.b8b8d90b.css.map": "/gratify-journaling/static/css/main.b8b8d90b.css.map",
-    "main.de15066f.js.map": "/gratify-journaling/static/js/main.de15066f.js.map",
+    "main.65cfd580.js.map": "/gratify-journaling/static/js/main.65cfd580.js.map",
     "login.cf10f1d9.chunk.js.map": "/gratify-journaling/static/js/login.cf10f1d9.chunk.js.map",
-    "dashboard.2feb15c6.chunk.js.map": "/gratify-journaling/static/js/dashboard.2feb15c6.chunk.js.map",
-    "380.7a274039.chunk.js.map": "/gratify-journaling/static/js/380.7a274039.chunk.js.map",
-    "235.25de4ffe.chunk.js.map": "/gratify-journaling/static/js/235.25de4ffe.chunk.js.map"
+    "dashboard.ce76cae6.chunk.js.map": "/gratify-journaling/static/js/dashboard.ce76cae6.chunk.js.map",
+    "149.78bea28b.chunk.js.map": "/gratify-journaling/static/js/149.78bea28b.chunk.js.map",
+    "527.0d190e4e.chunk.js.map": "/gratify-journaling/static/js/527.0d190e4e.chunk.js.map",
+    "127.66856a8b.chunk.js.map": "/gratify-journaling/static/js/127.66856a8b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b8b8d90b.css",
-    "static/js/main.de15066f.js"
+    "static/js/main.65cfd580.js"
   ]
 }
