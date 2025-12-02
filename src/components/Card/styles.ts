@@ -33,7 +33,6 @@ export const CardContainer = styled.div`
     width: 100%;
     border-radius: 5px 5px 0px 0px;
     margin: 0;
-    background: #fff;
 
     .header {
       width: 100%;
@@ -86,6 +85,16 @@ export const CardContainer = styled.div`
 
     .title:focus {
       outline: none;
+    }
+
+    .toolbox {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      margin: 0px;
+      padding: 0px;
+      gap: 20px;
     }
   
     select {
@@ -370,6 +379,7 @@ export const CardContainer = styled.div`
       margin: 10px;
       padding: 20px;
       border: none;
+      background: transparent;
     }
 
     textarea:focus {

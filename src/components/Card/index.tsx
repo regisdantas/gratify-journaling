@@ -1,6 +1,10 @@
 import React from "react";
 import { CardContainer } from "./styles";
 import { FiTrash2, FiLock, FiUnlock, FiStar, FiSettings , FiType, FiMic, FiVolume2, FiVolumeX} from "react-icons/fi";
+import { RxDividerVertical } from "react-icons/rx";
+import { MdOutlineColorLens } from "react-icons/md";
+import { FaStar } from "react-icons/fa";
+
 
 import { isJsonString } from "../../utils";
 import { TbPinned, TbPinnedOff } from "react-icons/tb";
@@ -18,6 +22,7 @@ import stringWidth from "string-width";
 
 import { useSpeechRecognition } from "../../hooks/useSpeechRecognition";
 import { useTextToSpeech } from "../../hooks/useTextToSpeech";
+import { useClickOutside } from "../../hooks/useClickOutside";
 
 interface ICardProps {
   id: string;
@@ -32,7 +37,9 @@ const defaultContent = {
   title: "",
   type: "record",
   text: "",
-  color: "red",
+  color: "#fff",
+  locked: false,
+  favorite: false,
   pinned: false,
 };
 
@@ -48,13 +55,17 @@ const Card: React.FC<ICardProps> = ({
   const { speak, speaking, stopSpeaking } = useTextToSpeech();
   const [editingContent, setEditingContent] = React.useState(false);
   const [showToolBox, setShowToolBox] = React.useState(false);
+  const toolboxRef = React.useRef(null);
+
+  useClickOutside(toolboxRef, () => setShowToolBox(false));
+
   const objContent = isJsonString(content)
     ? JSON.parse(content)
     : { ...defaultContent, text: content };
   const [value, setValue] = React.useState(objContent.text  || "");
   return (
-    <CardContainer key={id} color={objContent.color}>
-      <div className="ContentContainer">
+    <CardContainer key={id}>
+      <div className="ContentContainer"  style={{ backgroundColor: objContent.color || "#eee" }}>
         <header className="header">
           <strong className="titleBox">
             {objContent.pinned ? (
@@ -81,14 +92,26 @@ const Card: React.FC<ICardProps> = ({
             :<span
                 className="title"></span>}
           </strong>
-          <FiMic size={18} title="Speech note"/>
-          {(speaking?<FiVolumeX size={18} title="Stop hearing note" onClick={stopSpeaking}/>:<FiVolume2 size={18} title="Hear note" onClick={(e) => speak(value)}/>)}
-          {showToolBox?<>
-            <FiLock  size={18} title="Lock note"/>
-            <FiType size={18} title="Load template"/>
-            <FiTrash2  size={18} title="Delete note" onClick={(e) => onDeleteCard(id)}/>
-          </>: <></>}
-          <FiSettings size={18} title="Settings" onClick={() => setShowToolBox(!showToolBox)} onBlur={() => setShowToolBox(false)}/>
+          <span ref={toolboxRef} className="toolbox">
+            <FiMic size={18} title="Speech note"/>
+            {(speaking?<FiVolumeX size={18} title="Stop hearing note" onClick={stopSpeaking}/>:<FiVolume2 size={18} title="Hear note" onClick={(e) => speak(value)}/>)}
+            {showToolBox?<>
+              <RxDividerVertical size={18}/>
+              {objContent.favorite?
+                <FaStar size={18} title="Unfavorite note" onClick={(e) => onChangeContent(id, JSON.stringify({...objContent, favorite: false}))}/>:
+                <FiStar size={18} title="Favorite note" onClick={(e) => onChangeContent(id, JSON.stringify({...objContent, favorite: true}))}/>
+              }
+              {objContent.locked?
+                <FiUnlock  size={18} title="Unlock note" onClick={(e) => onChangeContent(id, JSON.stringify({...objContent, locked: false}))}/>:
+                <FiLock  size={18} title="Lock note" onClick={(e) => onChangeContent(id, JSON.stringify({...objContent, locked: true}))}/>
+              }
+              <MdOutlineColorLens size={18} title="Change note background color" onClick={() => onChangeContent(id, JSON.stringify({...objContent, color: "#E3F2FD"}))}/>
+              <FiType size={18} title="Load template"/>
+              <RxDividerVertical size={18}/>
+              <FiTrash2  size={18} title="Delete note" onClick={(e) => onDeleteCard(id)}/>
+            </>: <></>}
+            <FiSettings size={18} title="Settings" onClick={() => setShowToolBox(!showToolBox)} onBlur={() => setShowToolBox(false)}/>
+          </span>
         </header>
 
         {editingContent ? (
