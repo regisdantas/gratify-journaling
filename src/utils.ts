@@ -8,6 +8,7 @@ export const isJsonString = (myString: string) => {
 };
 
 export const formatDate = (date: string): string => {
+
     const parts = date.split("-");
     if (parts.length !== 3) {
         return date;

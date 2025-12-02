@@ -28,7 +28,14 @@ bottom: 0px;
     background: transparent;
     height: auto;
     border: none;
-  }
+      outline: none;
+    }
+
+    input:focus {
+      border: none;
+      outline: none;
+      box-shadow: none;
+    }
 `;
 
 export const MenuBarContainer = styled.div`
