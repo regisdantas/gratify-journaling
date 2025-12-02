@@ -51,21 +51,6 @@ export const CardContainer = styled.div`
       }
     }
 
-    .toolbar {
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      font-size: 12px;
-      padding: 10px;
-      gap: 20px;
-
-      svg {
-        margin: 0;
-        cursor: pointer;
-      }
-    }
-
     .titleBox {
       height: 20px;
     }
@@ -94,7 +79,7 @@ export const CardContainer = styled.div`
       justify-content: flex-end;
       margin: 0px;
       padding: 0px;
-      gap: 20px;
+      gap: 10px;
     }
   
     select {
