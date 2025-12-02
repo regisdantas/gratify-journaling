@@ -46,7 +46,8 @@ const Card: React.FC<ICardProps> = ({
 }: ICardProps) => {
   const { listening, transcript, startListening, stopListening} = useSpeechRecognition();
   const { speak, speaking, stopSpeaking } = useTextToSpeech();
-  const [editing, setEditing] = React.useState(false);
+  const [editingContent, setEditingContent] = React.useState(false);
+  const [showToolBox, setShowToolBox] = React.useState(false);
   const objContent = isJsonString(content)
     ? JSON.parse(content)
     : { ...defaultContent, text: content };
@@ -55,14 +56,15 @@ const Card: React.FC<ICardProps> = ({
     <CardContainer key={id} color={objContent.color}>
       <div className="ContentContainer">
         <header className="header">
-          <strong>
+          <strong className="titleBox">
             {objContent.pinned ? (
-              <TbPinnedOff title="Unpin note" size={22} onClick={() => onChangeContent(id, JSON.stringify({...objContent, pinned: false}))}/>
+              <TbPinnedOff title="Unpin note" size={18} onClick={() => onChangeContent(id, JSON.stringify({...objContent, pinned: false}))}/>
             ) : (
-              <TbPinned title="Pin note" size={22} onClick={() => onChangeContent(id, JSON.stringify({...objContent, pinned: true}))} />
+              <TbPinned title="Pin note" size={18} onClick={() => onChangeContent(id, JSON.stringify({...objContent, pinned: true}))} />
             )}
-            <strong>
+            {!showToolBox?
               <span
+                className="title"
                 title="Note name"
                 role="textbox"
                 contentEditable
@@ -76,19 +78,20 @@ const Card: React.FC<ICardProps> = ({
               >
                 {objContent.title}
               </span>
-            </strong>
+            :<span
+                className="title"></span>}
           </strong>
-
-          <FiTrash2  size={18} title="Delete note" onClick={(e) => onDeleteCard(id)}/>
-        </header>
-        <header className="toolbar">
-          <FiLock  size={18} title="Lock note"/>
-          <FiSettings size={18} title="Settings"/>
-          <FiType size={18} title="Load template"/>
           <FiMic size={18} title="Speech note"/>
           {(speaking?<FiVolumeX size={18} title="Stop hearing note" onClick={stopSpeaking}/>:<FiVolume2 size={18} title="Hear note" onClick={(e) => speak(value)}/>)}
+          {showToolBox?<>
+            <FiLock  size={18} title="Lock note"/>
+            <FiType size={18} title="Load template"/>
+            <FiTrash2  size={18} title="Delete note" onClick={(e) => onDeleteCard(id)}/>
+          </>: <></>}
+          <FiSettings size={18} title="Settings" onClick={() => setShowToolBox(!showToolBox)} onBlur={() => setShowToolBox(false)}/>
         </header>
-        {editing ? (
+
+        {editingContent ? (
         <textarea
           className="reactMarkDown"
           placeholder={`* ❓ What do you have for today?
@@ -114,12 +117,12 @@ const Card: React.FC<ICardProps> = ({
                 id,
                 JSON.stringify({ ...objContent, text: value })
               )
-              setEditing(false)
+              setEditingContent(false)
             }
           }
         />
       ) : (
-        <div className={"reactMarkDown"} onClick={() => setEditing(true)} >
+        <div className={"reactMarkDown"} onClick={() => setEditingContent(true)} >
          <ReactMarkdown
             children={value || "* ❓ What do you have for today?"}
             remarkPlugins={[

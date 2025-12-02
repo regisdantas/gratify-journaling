@@ -37,6 +37,7 @@ export const CardContainer = styled.div`
 
     .header {
       width: 100%;
+      height: 44px;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -47,6 +48,7 @@ export const CardContainer = styled.div`
       svg {
         margin: 0;
         cursor: pointer;
+        height: 18px;
       }
     }
 
@@ -65,10 +67,27 @@ export const CardContainer = styled.div`
       }
     }
 
-    span {
-      display: flex;
-      align-items: center;
+    .titleBox {
+      height: 20px;
     }
+  
+    .title {
+      display: flex;
+      align-items: flex-start;
+      border: 0px;
+      width: 100%;
+      text-align: justify;
+    }
+
+    .title:empty::before {
+      content: attr(data-placeholder);
+      color: lightgray;
+    }
+
+    .title:focus {
+      outline: none;
+    }
+  
     select {
       -webkit-appearance: none;
       appearance: none;
@@ -90,21 +109,6 @@ export const CardContainer = styled.div`
       gap: 20px;
     }
 
-    span {
-      border: 0px;
-      width: 100%;
-      text-align: justify;
-    }
-
-    span:empty::before {
-      content: attr(data-placeholder);
-      color: lightgray;
-    }
-
-    span:focus {
-      outline: none;
-    }
-
     .ActionContainer {
       width: 100%;
       display: flex;
@@ -122,7 +126,7 @@ export const CardContainer = styled.div`
     }
     /* body */
     .reactMarkDown {
-      padding: 0px 20px 0px 20px;
+      padding: 20px;
       margin: 0px;
       color: #000;
       font: 13px "Myriad Pro", "Lucida Grande", Lucida, Verdana, sans-serif;
