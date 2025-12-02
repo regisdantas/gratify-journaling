@@ -1,6 +1,7 @@
 import React from "react";
 import { CardContainer } from "./styles";
-import { FiTrash2 } from "react-icons/fi";
+import { FiTrash2, FiLock, FiUnlock, FiStar, FiSettings , FiType, FiMic, FiVolume2} from "react-icons/fi";
+
 import { isJsonString } from "../../utils";
 import { TbPinned, TbPinnedOff } from "react-icons/tb";
 import { formatDate } from "../../utils";
@@ -14,8 +15,6 @@ import rehypeKatex from "rehype-katex";
 import remarkToc from "remark-toc";
 import remarkBreaks from "remark-breaks";
 import stringWidth from "string-width";
-// import remarkMdx from "remark-mdx";
-// import remarkPrism from "remark-prism";
 
 interface ICardProps {
   id: string;
@@ -42,8 +41,6 @@ const Card: React.FC<ICardProps> = ({
   onDeleteCard,
   onChangeContent,
 }: ICardProps) => {
-  const textRef = React.useRef<HTMLSpanElement>(null);
-  const titleRef = React.useRef<HTMLSpanElement>(null);
   const [editing, setEditing] = React.useState(false);
   const objContent = isJsonString(content)
     ? JSON.parse(content)
@@ -55,29 +52,13 @@ const Card: React.FC<ICardProps> = ({
         <header>
           <strong>
             {objContent.pinned ? (
-              <TbPinnedOff title="Unpin note" size={24} onClick={() => onChangeContent(id, JSON.stringify({...objContent, pinned: false}))}/>
+              <TbPinnedOff title="Unpin note" size={18} onClick={() => onChangeContent(id, JSON.stringify({...objContent, pinned: false}))}/>
             ) : (
-              <TbPinned title="Pin note" size={24} onClick={() => onChangeContent(id, JSON.stringify({...objContent, pinned: true}))} />
+              <TbPinned title="Pin note" size={18} onClick={() => onChangeContent(id, JSON.stringify({...objContent, pinned: true}))} />
             )}
-            {/* <input type={'checkbox'} checked={objContent.pinned} onChange={e => onChangeContent(id, JSON.stringify({...objContent, pinned: e.target.checked}))} /> */}
-            {/* <select
-              title="Note type"
-              value={objContent.type}
-              onChange={(e) =>
-                onChangeContent(
-                  id,
-                  JSON.stringify({ ...objContent, type: e.target.value })
-                )
-              }
-            >
-              <option value="note">📝</option>
-              <option value="gratitude">🙏</option>
-              <option value="journal">📓</option>
-            </select> */}
             <strong>
               <span
                 title="Note name"
-                ref={titleRef}
                 role="textbox"
                 contentEditable
                 data-placeholder="🙋 Give me a name"
@@ -92,27 +73,16 @@ const Card: React.FC<ICardProps> = ({
               </span>
             </strong>
           </strong>
-
-          <FiTrash2  title="Delete note" onClick={(e) => onDeleteCard(id)}></FiTrash2>
+          <FiLock  size={18} title="Lock note"/>
+          <FiSettings size={18} title="Settings"/>
+          <FiType size={18} title="Load template"/>
+          <FiMic size={18} title="Speech note"/>
+          <FiVolume2 size={18} title="Hear note"/>
+          <FiTrash2  size={18} title="Delete note" onClick={(e) => onDeleteCard(id)}/>
         </header>
-        {/* <span
-          title="Note content"
-          ref={textRef}
-          role="textbox"
-          contentEditable
-          data-placeholder="What do you have for today?"
-          onBlur={(e) =>
-            onChangeContent(
-              id,
-              JSON.stringify({ ...objContent, text: encodeContent(e.target.innerText) })
-            )
-          }
-          suppressContentEditableWarning={true}
-        >
-          {objContent.text}
-        </span> */}
         {editing ? (
         <textarea
+          className="reactMarkDown"
           placeholder={`* ❓ What do you have for today?
 
 
@@ -139,7 +109,6 @@ const Card: React.FC<ICardProps> = ({
               setEditing(false)
             }
           }
-          className="w-full p-2 border rounded"
         />
       ) : (
         <div className={"reactMarkDown"} onClick={() => setEditing(true)} >
@@ -158,10 +127,7 @@ const Card: React.FC<ICardProps> = ({
               remarkMath,
               rehypeKatex,
               remarkBreaks,
-              // remarkGridTables,
-              // remarkPrism,
               remarkFrontmatter,
-              // remarkMdx
             ]}
           />
           </div>)}

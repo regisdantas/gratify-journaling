@@ -186,13 +186,13 @@ export const CardContainer = styled.div`
       margin-bottom: 1em;
       color: #000;
       font-weight: bold;
-      font-size: 30px;
+      font-size: 22px;
     }
 
     .reactMarkDown h2 {
       margin-top: 1em;
       margin-bottom: 1em;
-      font-size: 24px;
+      font-size: 18px;
       color: #000;
       padding-bottom: 2px;
     }
@@ -200,14 +200,14 @@ export const CardContainer = styled.div`
     .reactMarkDown h3 {
       margin-top: 1em;
       margin-bottom: 1em;
-      font-size: 17px;
+      font-size: 13px;
       color: #000;
     }
 
     .reactMarkDown h4 {
       margin-top: 1em;
       margin-bottom: 1em;
-      font-size: 15px;
+      font-size: 11px;
       color: #000;
     }
 
@@ -215,7 +215,7 @@ export const CardContainer = styled.div`
       margin-top: 1em;
       margin-bottom: 1em;
       padding: 0;
-      font-size: 13px;
+      font-size: 11px;
       color: #000;
     }
 
