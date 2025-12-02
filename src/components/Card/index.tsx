@@ -1,6 +1,6 @@
 import React from "react";
 import { CardContainer } from "./styles";
-import { FiTrash2, FiLock, FiUnlock, FiStar, FiSettings , FiType, FiMic, FiVolume2} from "react-icons/fi";
+import { FiTrash2, FiLock, FiUnlock, FiStar, FiSettings , FiType, FiMic, FiVolume2, FiVolumeX} from "react-icons/fi";
 
 import { isJsonString } from "../../utils";
 import { TbPinned, TbPinnedOff } from "react-icons/tb";
@@ -15,6 +15,9 @@ import rehypeKatex from "rehype-katex";
 import remarkToc from "remark-toc";
 import remarkBreaks from "remark-breaks";
 import stringWidth from "string-width";
+
+import { useSpeechRecognition } from "../../hooks/useSpeechRecognition";
+import { useTextToSpeech } from "../../hooks/useTextToSpeech";
 
 interface ICardProps {
   id: string;
@@ -41,6 +44,8 @@ const Card: React.FC<ICardProps> = ({
   onDeleteCard,
   onChangeContent,
 }: ICardProps) => {
+  const { listening, transcript, startListening, stopListening} = useSpeechRecognition();
+  const { speak, speaking, stopSpeaking } = useTextToSpeech();
   const [editing, setEditing] = React.useState(false);
   const objContent = isJsonString(content)
     ? JSON.parse(content)
@@ -49,12 +54,12 @@ const Card: React.FC<ICardProps> = ({
   return (
     <CardContainer key={id} color={objContent.color}>
       <div className="ContentContainer">
-        <header>
+        <header className="header">
           <strong>
             {objContent.pinned ? (
-              <TbPinnedOff title="Unpin note" size={18} onClick={() => onChangeContent(id, JSON.stringify({...objContent, pinned: false}))}/>
+              <TbPinnedOff title="Unpin note" size={22} onClick={() => onChangeContent(id, JSON.stringify({...objContent, pinned: false}))}/>
             ) : (
-              <TbPinned title="Pin note" size={18} onClick={() => onChangeContent(id, JSON.stringify({...objContent, pinned: true}))} />
+              <TbPinned title="Pin note" size={22} onClick={() => onChangeContent(id, JSON.stringify({...objContent, pinned: true}))} />
             )}
             <strong>
               <span
@@ -73,12 +78,15 @@ const Card: React.FC<ICardProps> = ({
               </span>
             </strong>
           </strong>
+
+          <FiTrash2  size={18} title="Delete note" onClick={(e) => onDeleteCard(id)}/>
+        </header>
+        <header className="toolbar">
           <FiLock  size={18} title="Lock note"/>
           <FiSettings size={18} title="Settings"/>
           <FiType size={18} title="Load template"/>
           <FiMic size={18} title="Speech note"/>
-          <FiVolume2 size={18} title="Hear note"/>
-          <FiTrash2  size={18} title="Delete note" onClick={(e) => onDeleteCard(id)}/>
+          {(speaking?<FiVolumeX size={18} title="Stop hearing note" onClick={stopSpeaking}/>:<FiVolume2 size={18} title="Hear note" onClick={(e) => speak(value)}/>)}
         </header>
         {editing ? (
         <textarea

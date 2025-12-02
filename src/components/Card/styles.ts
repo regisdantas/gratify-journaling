@@ -35,23 +35,38 @@ export const CardContainer = styled.div`
     margin: 0;
     background: #fff;
 
-    header {
+    .header {
       width: 100%;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      border-bottom: 1px solid lightgray;
+      padding: 10px;
+      gap: 20px;
 
       svg {
-        margin: 10px;
+        margin: 0;
+        cursor: pointer;
+      }
+    }
+
+    .toolbar {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      font-size: 12px;
+      padding: 10px;
+      gap: 20px;
+
+      svg {
+        margin: 0;
         cursor: pointer;
       }
     }
 
     span {
       display: flex;
-      padding: 0;
-      margin: 0;
-      gap: 5px;
       align-items: center;
     }
     select {
@@ -72,11 +87,11 @@ export const CardContainer = styled.div`
       width: 100%;
       display: flex;
       align-items: center;
+      gap: 20px;
     }
 
     span {
       border: 0px;
-      padding: 10px;
       width: 100%;
       text-align: justify;
     }
