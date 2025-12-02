@@ -1,7 +1,7 @@
 {
   "name": "gratify-journaling",
   "version": "0.1.0",
-  "homepage": "https://gratify-journaling-gjkgk.ondigitalocean.app",
+  "homepage": "https://regisdantas.github.io/gratify-journalling",
   "private": true,
   "dependencies": {
     "@capacitor/android": "^4.5.0",
