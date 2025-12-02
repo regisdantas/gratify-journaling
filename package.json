@@ -1,7 +1,6 @@
 {
   "name": "gratify-journaling",
   "version": "0.1.0",
-  "homepage": "https://regisdantas.github.io/gratify-journaling",
   "private": true,
   "dependencies": {
     "@capacitor/android": "^4.5.0",
