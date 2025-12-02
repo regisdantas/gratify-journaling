@@ -96,7 +96,7 @@ export const CardContainer = styled.div`
     }
 
     strong {
-      color: darkgray;
+      color: black;
       width: 100%;
       display: flex;
       align-items: center;
@@ -356,6 +356,9 @@ export const CardContainer = styled.div`
     }
 
     textarea {
+      touch-action: manipulation;
+      -webkit-text-size-adjust: 100%;
+
       width: 100%;
       min-height: 100px;
       resize: none;
