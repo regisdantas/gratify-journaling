@@ -73,7 +73,7 @@ export const CardContainer = styled.div`
     }
 
     .toolbox {
-      width: 100%;
+      width: auto;
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
