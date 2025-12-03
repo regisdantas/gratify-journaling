@@ -334,10 +334,12 @@ export const CardContainer = styled.div`
       margin: 3px 0 10px 0;
     }
 
-    .reactMarkDown input {
-      vertical-align: middle;
-      padding: 0;
-      margin: 0 0 5px 0;
+    .reactMarkDown input[type="checkbox"] {
+      display: inline-block;
+      vertical-align: start;
+      margin: 0 6px 0 0;
+      width: 14px;
+      height: 14px;
     }
 
     .reactMarkDown select {

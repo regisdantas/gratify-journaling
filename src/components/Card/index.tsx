@@ -1,9 +1,11 @@
 import React from "react";
 import { CardContainer } from "./styles";
-import { FiTrash2, FiLock, FiUnlock, FiStar, FiSettings , FiType, FiMic, FiVolume2, FiVolumeX} from "react-icons/fi";
+import { FiTrash2, FiLock, FiUnlock, FiStar, FiType, FiMic, FiVolume2, FiVolumeX} from "react-icons/fi";
 import { RxDividerVertical } from "react-icons/rx";
 import { MdOutlineColorLens } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
+import { IoMdArrowDropdown, IoMdArrowDropleft } from "react-icons/io";
+import { FiBox  } from "react-icons/fi";
 
 
 import { isJsonString } from "../../utils";
@@ -41,6 +43,7 @@ const defaultContent = {
   locked: false,
   favorite: false,
   pinned: false,
+  collapsed: false,
 };
 
 const Card: React.FC<ICardProps> = ({
@@ -113,12 +116,17 @@ const Card: React.FC<ICardProps> = ({
                   <FiLock  size={18} title="Lock note" onClick={(e) => onChangeContent(id, JSON.stringify({...objContent, locked: true}))}/>
                 }
               </>:
-              <FiSettings size={18} title="Settings" onClick={() => setShowToolBox(!showToolBox)} onBlur={() => setShowToolBox(false)}/>
+              <></>
             }
-  
+            <FiBox    size={18} title="Tool Box" onClick={() => setShowToolBox(!showToolBox)} onBlur={() => setShowToolBox(false)}/>
+            {objContent.collapsed?
+              <IoMdArrowDropleft   size={18} title="Expand note" onClick={() => onChangeContent(id, JSON.stringify({...objContent, collapsed: false}))}/>:
+              <IoMdArrowDropdown  size={18} title="Collapse note" onClick={() => onChangeContent(id, JSON.stringify({...objContent, collapsed: true}))}/>
+            }
           </span>
         </header>
-
+     {!objContent.collapsed?
+     <>
         {editingContent ? (
         <textarea
           className="reactMarkDown"
@@ -170,6 +178,7 @@ const Card: React.FC<ICardProps> = ({
             ]}
           />
           </div>)}
+          </>:<></>}
         <span className="date">{formatDate(date)}</span>
       </div>
     </CardContainer>
