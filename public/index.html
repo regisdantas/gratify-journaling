@@ -1,20 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Charset -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+    <!-- Mobile viewport and UI scaling -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
+    />
+
+    <!-- SPA universal base -->
+    <base href="/" />
+
+    <!-- Title -->
+    <title>Gratify — Practice Journaling and Gratitude Daily</title>
+
+    <!-- Primary description -->
+    <meta
+      name="description"
+      content="Gratify is an open-source journaling and gratitude app that helps you build a positive mindset by practicing daily journaling and gratitude with simplicity, privacy, and consistency."
+    />
+
+    <!-- Keywords (not required but still used by some engines) -->
+    <meta
+      name="keywords"
+      content="gratitude app, gratitude journal, journaling, positive mindset, daily gratitude, mental health app, habit building"
+    />
+
+    <!-- Author -->
+    <meta name="author" content="Regis Moura Dantas" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/icons/apple-icon-180.png"
+    />
+
+    <!-- Preload fonts for faster LCP -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/fonts/roboto-400.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/fonts/roboto-700.woff2"
+    />
+
+    <!-- Google Fonts fallback (if you don't host fonts locally) -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+    <meta property="og:title" content="Gratify — Practice Journaling and Gratitude Daily" />
     <meta
-      name="description"
-      content="OpenSource Application created by Regis Moura Dantas to help people to practice Gratitude daily."
+      property="og:description"
+      content="An open-source journaling and gratitude app designed to help you build a happier and more intentional life."
     />
-    <title>Gratify</title>
+    <meta property="og:image" content="https://gratify.life/og-image.jpg" />
+    <meta property="og:url" content="https://gratify.life" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Gratify" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Gratify — Practice Journaling and Gratitude Daily" />
+    <meta
+      name="twitter:description"
+      content="An open-source journaling and gratitude app to help you develop a positive mindset."
+    />
+    <meta name="twitter:image" content="https://gratify.life/og-image.jpg" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://gratify.life/" />
+
+    <!-- Structured Data | SEO Power Boost -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "MobileApplication",
+        "name": "Gratify",
+        "operatingSystem": "All",
+        "applicationCategory": "LifestyleApplication",
+        "description": "Open-source journaling and gratitude app that helps users practice journaling and gratitude daily.",
+        "url": "https://gratify.life",
+        "author": {
+          "@type": "Person",
+          "name": "Regis Moura Dantas"
+        },
+        "image": "https://gratify.life/og-image.jpg",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "ratingCount": "37"
+        }
+      }
+    </script>
   </head>
+
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
