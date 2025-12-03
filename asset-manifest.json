@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/gratify-journaling/static/css/main.b8b8d90b.css",
-    "main.js": "/gratify-journaling/static/js/main.c22957a0.js",
-    "login.js": "/gratify-journaling/static/js/login.cf10f1d9.chunk.js",
-    "dashboard.js": "/gratify-journaling/static/js/dashboard.15339587.chunk.js",
-    "static/js/149.78bea28b.chunk.js": "/gratify-journaling/static/js/149.78bea28b.chunk.js",
-    "static/js/527.0d190e4e.chunk.js": "/gratify-journaling/static/js/527.0d190e4e.chunk.js",
-    "static/js/127.66856a8b.chunk.js": "/gratify-journaling/static/js/127.66856a8b.chunk.js",
-    "static/media/logo.png": "/gratify-journaling/static/media/logo.1164200b72d8c1daf071.png",
-    "static/media/holiday.ttf": "/gratify-journaling/static/media/holiday.69b3e7d2f82568b18386.ttf",
-    "static/media/user.png": "/gratify-journaling/static/media/user.ae3a914be1e9f200b221.png",
-    "index.html": "/gratify-journaling/index.html",
-    "main.b8b8d90b.css.map": "/gratify-journaling/static/css/main.b8b8d90b.css.map",
-    "main.c22957a0.js.map": "/gratify-journaling/static/js/main.c22957a0.js.map",
-    "login.cf10f1d9.chunk.js.map": "/gratify-journaling/static/js/login.cf10f1d9.chunk.js.map",
-    "dashboard.15339587.chunk.js.map": "/gratify-journaling/static/js/dashboard.15339587.chunk.js.map",
-    "149.78bea28b.chunk.js.map": "/gratify-journaling/static/js/149.78bea28b.chunk.js.map",
-    "527.0d190e4e.chunk.js.map": "/gratify-journaling/static/js/527.0d190e4e.chunk.js.map",
-    "127.66856a8b.chunk.js.map": "/gratify-journaling/static/js/127.66856a8b.chunk.js.map"
+    "main.css": "/static/css/main.5554a488.css",
+    "main.js": "/static/js/main.6c04e9a2.js",
+    "login.js": "/static/js/login.cf10f1d9.chunk.js",
+    "dashboard.js": "/static/js/dashboard.ff3d92e6.chunk.js",
+    "static/js/149.78bea28b.chunk.js": "/static/js/149.78bea28b.chunk.js",
+    "static/js/660.bfeabfdf.chunk.js": "/static/js/660.bfeabfdf.chunk.js",
+    "static/js/127.66856a8b.chunk.js": "/static/js/127.66856a8b.chunk.js",
+    "static/media/logo.png": "/static/media/logo.1164200b72d8c1daf071.png",
+    "static/media/holiday.ttf": "/static/media/holiday.69b3e7d2f82568b18386.ttf",
+    "static/media/user.png": "/static/media/user.ae3a914be1e9f200b221.png",
+    "index.html": "/index.html",
+    "main.5554a488.css.map": "/static/css/main.5554a488.css.map",
+    "main.6c04e9a2.js.map": "/static/js/main.6c04e9a2.js.map",
+    "login.cf10f1d9.chunk.js.map": "/static/js/login.cf10f1d9.chunk.js.map",
+    "dashboard.ff3d92e6.chunk.js.map": "/static/js/dashboard.ff3d92e6.chunk.js.map",
+    "149.78bea28b.chunk.js.map": "/static/js/149.78bea28b.chunk.js.map",
+    "660.bfeabfdf.chunk.js.map": "/static/js/660.bfeabfdf.chunk.js.map",
+    "127.66856a8b.chunk.js.map": "/static/js/127.66856a8b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b8b8d90b.css",
-    "static/js/main.c22957a0.js"
+    "static/css/main.5554a488.css",
+    "static/js/main.6c04e9a2.js"
   ]
 }
