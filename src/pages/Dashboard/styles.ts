@@ -22,7 +22,7 @@ bottom: 0px;
   svg {
     cursor: pointer;
     margin: 0 10px 0 10px;
-    width: 20px;
+    width: 30px;
   }
   input {
     background: transparent;

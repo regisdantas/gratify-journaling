@@ -1,9 +1,11 @@
 import React from "react";
 import { CardContainer } from "./styles";
-import { FiTrash2, FiLock, FiUnlock, FiStar, FiSettings , FiType, FiMic, FiVolume2, FiVolumeX} from "react-icons/fi";
+import { FiTrash2, FiLock, FiUnlock, FiStar, FiType, FiMic, FiVolume2, FiVolumeX} from "react-icons/fi";
 import { RxDividerVertical } from "react-icons/rx";
 import { MdOutlineColorLens } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
+import { IoMdArrowDropdown, IoMdArrowDropleft } from "react-icons/io";
+import { FiBox, FiSend  } from "react-icons/fi";
 
 
 import { isJsonString } from "../../utils";
@@ -41,6 +43,7 @@ const defaultContent = {
   locked: false,
   favorite: false,
   pinned: false,
+  collapsed: false,
 };
 
 const Card: React.FC<ICardProps> = ({
@@ -58,6 +61,12 @@ const Card: React.FC<ICardProps> = ({
   const toolboxRef = React.useRef(null);
 
   useClickOutside(toolboxRef, () => setShowToolBox(false));
+
+  React.useEffect(() => {
+    if (listening) {
+      onChangeContent(id, JSON.stringify({...objContent, text: transcript}));
+    }
+  }, [listening]);
 
   const objContent = isJsonString(content)
     ? JSON.parse(content)
@@ -97,28 +106,37 @@ const Card: React.FC<ICardProps> = ({
           <span ref={toolboxRef} className="toolbox">
             {showToolBox?
               <>
-                <FiMic size={18} title="Speech note"/>
+                {listening?
+                <FiSend size={18} title="Stop listening" onClick={stopListening}/>:<FiMic size={18} title="Listen note" onClick={startListening}/>
+                }
                 {(speaking?<FiVolumeX size={18} title="Stop hearing note" onClick={stopSpeaking}/>:<FiVolume2 size={18} title="Hear note" onClick={(e) => speak(value)}/>)}
                 <RxDividerVertical size={18}/>
                 {objContent.favorite?
                   <FaStar size={18} title="Unfavorite note" onClick={(e) => onChangeContent(id, JSON.stringify({...objContent, favorite: false}))}/>:
                   <FiStar size={18} title="Favorite note" onClick={(e) => onChangeContent(id, JSON.stringify({...objContent, favorite: true}))}/>
                 }
-                <MdOutlineColorLens size={18} title="Change note background color" onClick={() => onChangeContent(id, JSON.stringify({...objContent, color: "#E3F2FD"}))}/>
-                <FiType size={18} title="Load template"/>
-                <RxDividerVertical size={18}/>
-                <FiTrash2  size={18} title="Delete note" onClick={(e) => onDeleteCard(id)}/>
                 {objContent.locked?
                   <FiUnlock  size={18} title="Unlock note" onClick={(e) => onChangeContent(id, JSON.stringify({...objContent, locked: false}))}/>:
                   <FiLock  size={18} title="Lock note" onClick={(e) => onChangeContent(id, JSON.stringify({...objContent, locked: true}))}/>
                 }
+                <MdOutlineColorLens size={18} title="Change note background color" onClick={() => onChangeContent(id, JSON.stringify({...objContent, color: "#E3F2FD"}))}/>
+                <FiType size={18} title="Load template"/>
+                
+                <RxDividerVertical size={18}/>
+                <FiTrash2  size={18} title="Delete note" onClick={(e) => onDeleteCard(id)}/>
+
               </>:
-              <FiSettings size={18} title="Settings" onClick={() => setShowToolBox(!showToolBox)} onBlur={() => setShowToolBox(false)}/>
+              <></>
             }
-  
+            <FiBox    size={18} title="Tool Box" onClick={() => setShowToolBox(!showToolBox)} onBlur={() => setShowToolBox(false)}/>
+            {objContent.collapsed?
+              <IoMdArrowDropleft   size={18} title="Expand note" onClick={() => onChangeContent(id, JSON.stringify({...objContent, collapsed: false}))}/>:
+              <IoMdArrowDropdown  size={18} title="Collapse note" onClick={() => onChangeContent(id, JSON.stringify({...objContent, collapsed: true}))}/>
+            }
           </span>
         </header>
-
+     {!objContent.collapsed?
+     <>
         {editingContent ? (
         <textarea
           className="reactMarkDown"
@@ -170,6 +188,7 @@ const Card: React.FC<ICardProps> = ({
             ]}
           />
           </div>)}
+          </>:<></>}
         <span className="date">{formatDate(date)}</span>
       </div>
     </CardContainer>
