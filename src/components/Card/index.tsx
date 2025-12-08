@@ -5,7 +5,7 @@ import { RxDividerVertical } from "react-icons/rx";
 import { MdOutlineColorLens } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
 import { IoMdArrowDropdown, IoMdArrowDropleft } from "react-icons/io";
-import { FiBox  } from "react-icons/fi";
+import { FiBox, FiSend  } from "react-icons/fi";
 
 
 import { isJsonString } from "../../utils";
@@ -62,6 +62,12 @@ const Card: React.FC<ICardProps> = ({
 
   useClickOutside(toolboxRef, () => setShowToolBox(false));
 
+  React.useEffect(() => {
+    if (listening) {
+      onChangeContent(id, JSON.stringify({...objContent, text: transcript}));
+    }
+  }, [listening]);
+
   const objContent = isJsonString(content)
     ? JSON.parse(content)
     : { ...defaultContent, text: content };
@@ -100,21 +106,25 @@ const Card: React.FC<ICardProps> = ({
           <span ref={toolboxRef} className="toolbox">
             {showToolBox?
               <>
-                <FiMic size={18} title="Speech note"/>
+                {listening?
+                <FiSend size={18} title="Stop listening" onClick={stopListening}/>:<FiMic size={18} title="Listen note" onClick={startListening}/>
+                }
                 {(speaking?<FiVolumeX size={18} title="Stop hearing note" onClick={stopSpeaking}/>:<FiVolume2 size={18} title="Hear note" onClick={(e) => speak(value)}/>)}
                 <RxDividerVertical size={18}/>
                 {objContent.favorite?
                   <FaStar size={18} title="Unfavorite note" onClick={(e) => onChangeContent(id, JSON.stringify({...objContent, favorite: false}))}/>:
                   <FiStar size={18} title="Favorite note" onClick={(e) => onChangeContent(id, JSON.stringify({...objContent, favorite: true}))}/>
                 }
-                <MdOutlineColorLens size={18} title="Change note background color" onClick={() => onChangeContent(id, JSON.stringify({...objContent, color: "#E3F2FD"}))}/>
-                <FiType size={18} title="Load template"/>
-                <RxDividerVertical size={18}/>
-                <FiTrash2  size={18} title="Delete note" onClick={(e) => onDeleteCard(id)}/>
                 {objContent.locked?
                   <FiUnlock  size={18} title="Unlock note" onClick={(e) => onChangeContent(id, JSON.stringify({...objContent, locked: false}))}/>:
                   <FiLock  size={18} title="Lock note" onClick={(e) => onChangeContent(id, JSON.stringify({...objContent, locked: true}))}/>
                 }
+                <MdOutlineColorLens size={18} title="Change note background color" onClick={() => onChangeContent(id, JSON.stringify({...objContent, color: "#E3F2FD"}))}/>
+                <FiType size={18} title="Load template"/>
+                
+                <RxDividerVertical size={18}/>
+                <FiTrash2  size={18} title="Delete note" onClick={(e) => onDeleteCard(id)}/>
+
               </>:
               <></>
             }
